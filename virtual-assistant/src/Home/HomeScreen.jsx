@@ -22,7 +22,6 @@ const HomeScreen = () => {
     { id: 3, event: 'Onboarding', date: '10 Feb' },
   ];
 
-  // Fetch tasks
   const fetchTasks = async () => {
     try {
       const response = await fetch(`${API_URL}/api/tasks`);
@@ -36,21 +35,19 @@ const HomeScreen = () => {
     }
   };
 
-  // Tambahkan useEffect untuk fetch tasks
   useEffect(() => {
     fetchTasks();
-    const interval = setInterval(fetchTasks, 5000); // Update setiap 5 detik
+    const interval = setInterval(fetchTasks, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Fetch chat history
   useEffect(() => {
     const fetchChatHistory = async () => {
       try {
         const response = await fetch(`${API_URL}/api/chat/recent`);
         if (!response.ok) throw new Error('Failed to fetch chat history');
         const data = await response.json();
-        console.log("Fetched chat history:", data); // Debug log
+        console.log("Fetched chat history:", data); 
         setChatHistory(data);
       } catch (error) {
         console.error('Error fetching chat history:', error);
@@ -58,11 +55,10 @@ const HomeScreen = () => {
     };
 
     fetchChatHistory();
-    const interval = setInterval(fetchChatHistory, 5000); // Update setiap 5 detik
+    const interval = setInterval(fetchChatHistory, 5000);
     return () => clearInterval(interval);
   }, []);
 
-  // Fetch profile
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -127,7 +123,6 @@ const HomeScreen = () => {
     }
   };
 
-  // JSX remains the same as your original code
   return (
     <main className="main-content">
       <header className="header">
@@ -158,7 +153,7 @@ const HomeScreen = () => {
         {error && <div className="error-message">{error}</div>}
 
         <div className="grid-container">
-          {/* Tasks Card */}
+          {/* Tasks*/}
           <div className="card tasks-card">
             <h2>Intern Tasks</h2>
             <div className="tasks">
@@ -183,7 +178,7 @@ const HomeScreen = () => {
             </div>
           </div>
 
-          {/* Events Card */}
+          {/* Events*/}
           <div className="card events-card">
             <h2>Upcoming Event</h2>
             <div className="events">
@@ -196,7 +191,7 @@ const HomeScreen = () => {
             </div>
           </div>
 
-          {/* Recent Chats Card */}
+          {/* Recent Chats*/}
           <div className="card chats-card">
             <h2>Recent Chats</h2>
             <div className="chat-list">

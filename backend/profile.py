@@ -1,15 +1,12 @@
-# profile.py
 from flask import request, jsonify
 import os
 from werkzeug.utils import secure_filename
 import base64
 from datetime import datetime
 
-# Configuration for file uploads
 UPLOAD_FOLDER = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'gif'}
 
-# In-memory storage for profile - with empty default values
 profile = {
     "name": "",
     "age": "",
@@ -22,10 +19,8 @@ def allowed_file(filename):
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 def setup_profile_routes(app):
-    # Configure upload folder
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     
-    # Ensure upload folder exists
     if not os.path.exists(UPLOAD_FOLDER):
         os.makedirs(UPLOAD_FOLDER)
 

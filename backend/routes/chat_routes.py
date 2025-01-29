@@ -25,7 +25,7 @@ def setup_chat_routes(app, db, Chat):
         Get recent chat sessions with their messages,
         ordered by the latest message in each session
         """
-        # Get unique session IDs ordered by latest message in each session
+
         latest_sessions = db.session.query(
             Chat.session_id,
             func.max(Chat.created_at).label('latest_message_time')
@@ -37,7 +37,6 @@ def setup_chat_routes(app, db, Chat):
 
         recent_chats = []
         
-        # Get all messages for each session
         for session_id, _ in latest_sessions:
             messages = Chat.query.filter_by(session_id=session_id)\
                                .order_by(Chat.created_at.asc())\
@@ -63,10 +62,8 @@ def setup_chat_routes(app, db, Chat):
             if not session_id:
                 session_id = str(uuid.uuid4())
 
-            # Delete existing messages for this session
             Chat.query.filter_by(session_id=session_id).delete()
             
-            # Save new messages
             for message in messages:
                 new_message = Chat(
                     session_id=session_id,
@@ -78,7 +75,6 @@ def setup_chat_routes(app, db, Chat):
             
             db.session.commit()
             
-            # Return updated chat history
             chats = Chat.query.filter_by(session_id=session_id)\
                             .order_by(Chat.created_at)\
                             .all()

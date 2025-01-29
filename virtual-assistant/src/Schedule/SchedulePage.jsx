@@ -1,8 +1,8 @@
 import React from 'react';
 
 const SchedulePage = () => {
-  const daysInMonth = 31; // Jumlah hari dalam bulan Januari
-  const startDayOffset = 3; // Mulai dari hari Rabu (0 = Minggu, 1 = Senin, ..., 6 = Sabtu)
+  const daysInMonth = 31; 
+  const startDayOffset = 3; 
 
   return (
     <div className="task-page">
@@ -33,11 +33,9 @@ const SchedulePage = () => {
               {day}
             </div>
           ))}
-          {/* Tambahkan offset untuk hari pertama */}
           {Array(startDayOffset).fill(null).map((_, index) => (
             <div key={`offset-${index}`} />
           ))}
-          {/* Render tanggal */}
           {Array(daysInMonth)
             .fill(null)
             .map((_, index) => (

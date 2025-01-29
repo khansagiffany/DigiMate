@@ -1,12 +1,9 @@
-# task.py
 from flask import request, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 
-# Initialize SQLAlchemy
 db = SQLAlchemy()
 
-# Task Model
 class Task(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     text = db.Column(db.String(200), nullable=False)

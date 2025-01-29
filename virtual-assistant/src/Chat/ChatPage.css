@@ -111,13 +111,13 @@
 
 .message-bubble ul,
 .message-bubble ol {
-  margin: 1em 0; /* Margin atas dan bawah */
-  padding-left: 2em; /* Padding kiri untuk bullets */
+  margin: 1em 0; 
+  padding-left: 2em; 
 }
 
 .message-bubble li {
-  margin: 0.5em 0; /* Margin antara list items */
-  line-height: 1.5; /* Line height untuk readability */
+  margin: 0.5em 0;
+  line-height: 1.5; 
 }
 
 .user .message-bubble {
@@ -200,7 +200,6 @@
   60%, 100% { content: '...'; }
 }
 
-/* Modern scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
 }

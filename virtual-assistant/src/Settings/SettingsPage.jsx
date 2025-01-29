@@ -38,7 +38,6 @@ const SettingsPage = () => {
     try {
       const newLang = language === 'en' ? 'id' : 'en';
       
-      // Cek apakah elemen translate sudah ada
       let translateElement = document.getElementById('google_translate_element');
       if (!translateElement) {
         translateElement = document.createElement('div');
@@ -70,19 +69,16 @@ const SettingsPage = () => {
   useEffect(() => {
     let script = null;
     try {
-      // Remove any existing Google Translate elements
       const existingScript = document.querySelector('script[src*="translate.google.com"]');
       if (existingScript) {
         existingScript.remove();
       }
 
-      // Create new script element
       script = document.createElement('script');
       script.src = '//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
       script.async = true;
       script.defer = true;
 
-      // Add load and error handlers
       script.onload = () => {
         window.googleTranslateElementInit = () => {
           setIsGoogleApiLoaded(true);
@@ -101,12 +97,10 @@ const SettingsPage = () => {
       setError(translations[language].error);
     }
 
-    // Cleanup function
     return () => {
       if (script && script.parentNode) {
         script.parentNode.removeChild(script);
       }
-      // Reset state on unmount
       setIsGoogleApiLoaded(false);
       setError(null);
     };

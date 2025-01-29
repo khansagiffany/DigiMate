@@ -1,8 +1,6 @@
-// src/config.js
 const REACT_APP_GEMINI_API_KEY='AIzaSyA9tid1hNRCSC3qBwx3foC_m9oS9y4hDpo';
 const GEMINI_API_URL = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent';
 
-// Debug logging
 console.log('Checking API key configuration...');
 console.log('API Key status:', REACT_APP_GEMINI_API_KEY ? 'Available' : 'Not found');
 

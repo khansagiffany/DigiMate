@@ -35,7 +35,6 @@ const ChatPage = () => {
     const newSessionId = createNewSession();
     setSessionId(newSessionId);
     
-    // Set pesan awal untuk sesi baru
     const initialMessages = [
       {
         type: 'assistant',
@@ -45,7 +44,6 @@ const ChatPage = () => {
     ];
     
     try {
-      // Simpan pesan awal dengan session ID baru
       const response = await fetch(`http://localhost:5000/api/chat-history?session_id=${newSessionId}`, {
         method: 'POST',
         headers: {
@@ -131,18 +129,15 @@ const ChatPage = () => {
       setIsLoading(true);
       
       try {
-        // Create new user message
         const userMessage = {
           type: 'user',
           content: text,
           created_at: new Date().toISOString()
         };
 
-        // Update messages state with user message
         const updatedMessages = [...messages, userMessage];
         await saveMessages(updatedMessages);
         
-        // Send to Gemini API
         const response = await fetch(
           `https://generativelanguage.googleapis.com/v1/models/gemini-pro:generateContent?key=${GEMINI_API_KEY}`,
           {
@@ -195,7 +190,6 @@ const ChatPage = () => {
           created_at: new Date().toISOString()
         };
 
-        // Save final messages including assistant response
         await saveMessages([...updatedMessages, assistantMessage]);
 
       } catch (error) {
